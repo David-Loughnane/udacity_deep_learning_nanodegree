@@ -1,4 +1,4 @@
-import numpy as numpy
+import numpy as np
 
 
 class NeuralNetwork():
@@ -23,7 +23,7 @@ class NeuralNetwork():
 
 
 	def train(self, training_set_inputs, training_set_outputs, number_of_iterations):
-		for i in xrange(number_of_iterations):
+		for i in range(number_of_iterations):
 			# pass the training set through our NN
 			output = self.predict(training_set_inputs)
 
@@ -31,7 +31,7 @@ class NeuralNetwork():
 			error = training_set_outputs - output
 
 			# multiply the error by the input and again by the gradient of the sigmoid curve
-			adjustment = np.dot(training_set_inputs, error * self.__sigmoid_derivative(output))
+			adjustment = np.dot(training_set_inputs.T, error * self.__sigmoid_derivative(output))
 
 			self.synaptic_weights += adjustment
 
@@ -42,10 +42,7 @@ class NeuralNetwork():
 
 
 
-
-
-
-if __name__ = '__main__':
+if __name__ == '__main__':
 	
 	# initalise a single neuron neural network
 	neural_network = NeuralNetwork()
